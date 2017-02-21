@@ -1,0 +1,32 @@
+{
+  "name": "public-supports",
+  "version": "0.0.0",
+  "description": "Federal and state level calculations for various public supports like SNAP, EITC, etc.",
+  "license": "MIT",
+  "repository": "codeforboston/public-supports",
+  "author": {
+    "name": "Isaac Chansky",
+    "email": "ichansky@gmail.com",
+    "url": ""
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "xo": {
+    "space": 2
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    ""
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.17.0",
+    "xo": "^0.17.0"
+  }
+}
