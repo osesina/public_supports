@@ -1,0 +1,35 @@
+
+
+(def eligibility benefitTable filingStatus earnedIncome qualifyingChildren
+    (if(== filingStatus 'MARRIED_FILING_JOINTLY')
+        (if(<= qualifyingChildren 2)
+            (< earnedIncome benefitTable.married.children[qualifyingChildren]['limit'])
+            (< earnedIncome benefitTable.married.children['3+']['limit'])
+        )
+        (if(<= qualifyingChildren 2)
+            (< earnedIncome benefitTable.nonMarried.children[qualifyingChildren]['limit'])
+            (< earnedIncome benefitTable.nonMarried.children['3+']['limit'])
+        )
+    )
+)
+(def benefit benefitTable filingStatus earnedIncome qualifyingChildren
+        (if(== filingStatus 'MARRIED_FILING_JOINTLY')
+            (if(<= qualifyingChildren 2)
+                benefitTable.married.children[qualifyingChildren]['maxValue']
+                benefitTable.married.children['3+']['maxValue']
+            )
+            (if(<= qualifyingChildren 2)
+                benefitTable.nonMarried.children[qualifyingChildren]['maxValue']
+                benefitTable.nonMarried.children['3+']['maxValue']
+            )
+        )
+)
+
+(= module.exports
+ (def eitc benefitTable filingStatus earnedIncome qualifyingChildren
+    (if(eligibility benefitTable filingStatus earnedIncome qualifyingChildren)
+        (benefit benefitTable filingStatus earnedIncome qualifyingChildren)
+        0
+    )
+ )
+)
